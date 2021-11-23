@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
+title: Cezary Tworzewski
+subtitle: Wordpress | Administracja IT | WS2016 | Linux | SQL
+description:
 keywords:
-author: John Doe
-language: en
-timezone: ''
+author: Cezary Tworzewski
+language: pl
+timezone:
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -17,9 +17,10 @@ url: https://cezarytworzewski.github.io/
 root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+#pretty_urls:
+ # trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  #trailing_html: true # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
@@ -35,10 +36,7 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link:
-  enable: true # Open external links in new tab
-  field: site # Apply to the whole site
-  exclude: ''
+external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -48,14 +46,7 @@ highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace: ''
-  wrap: true
-  hljs: false
-prismjs:
-  enable: false
-  preprocess: true
-  line_number: true
-  tab_replace: ''
+  tab_replace:
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
