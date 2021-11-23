@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "upload-site": "gh-pages -d public/",
-        "predeploy": "npm run lint",
-        "deploy": "hexo clean && hexo generate && npm run upload-site",
-        "start": "hexo server"
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
   },
   "hexo": {
     "version": "5.4.0"
