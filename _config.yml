@@ -92,7 +92,7 @@ ignore:
 theme: clean-blog
 theme_config:
   menu_title: Strona główna
-  index_cover: /blog/images/front.jpg
+  index_cover: /images/front.jpg
 
   # Header
   menu:
