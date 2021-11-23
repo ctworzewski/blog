@@ -1,10 +1,12 @@
 ---
 title: Instalacja serwera DNS Bind na CentOS 8
 date: 2021-11-23 06:53:45
-tags:
+tags: dns, administracja, linux, centOS, admin
 ---
 
-## Przerwa w bloku - kolejna reaktywacja
+## Przerwa w blogu - kolejna reaktywacja
+
+Postaram się, aby teraz była ciągłość artukułów :)
 
 Ostatnimi czasy bardzo dużo czasu poświęcam na naukę administracji systemiami Linux. Na moim oku są systemy CentOS oraz Ubuntu. Ucze się i konfiguruje różne usługi sieciowe tj. serwery FTP, serwery pocztowe, serwer Apache, stawianie serwerów VPN czy instalacja serwera SQL Server pod Linuxem.
 Sprawia mi to olbrzymią przyjemność. Część rzeczy np. mogę wykorzystać już w pracy zwłaszcza z serwerem pocztowym - wiem, gdzie co szukać i czego może być wina.
