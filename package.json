@@ -25,5 +25,8 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3"
-  }
+  },
+  "scripts": {
+    "deploy": "gh-pages -d public/"
+}
 }
