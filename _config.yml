@@ -4,7 +4,7 @@
 
 # Site
 title: Cezary Tworzewski
-subtitle: Wordpress | Administracja IT | WS2016 | Linux | SQL
+subtitle: Wordpress | Administracja IT | Linux | Wdrożenia | HelpDesk
 description:
 keywords:
 author: Cezary Tworzewski
@@ -25,9 +25,9 @@ permalink_defaults:
 # Directory
 source_dir: source
 public_dir: public
-tag_dir: tags
-archive_dir: archives
-category_dir: categories
+#tag_dir: tags
+#archive_dir: archives
+#category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
