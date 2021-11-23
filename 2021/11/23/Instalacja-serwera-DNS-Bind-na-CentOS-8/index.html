@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Przerwa w bloku - kolejna reaktywacjaOstatnimi czasy bardzo dużo czasu poświęcam na naukę administracji systemiami Linux. Na moim oku są systemy CentO"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Cezary Tworzewski"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Instalacja serwera DNS Bind na CentOS 8"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Przerwa w bloku - kolejna reaktywacjaOstatnimi czasy bardzo dużo czasu poświęcam na naukę administracji systemiami Linux. Na moim oku są systemy CentO"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Cezary Tworzewski"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="https://cezarytworzewski.github.io/images/front.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="https://cezarytworzewski.github.io/images/front.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Instalacja serwera DNS Bind na CentOS 8 - Cezary Tworzewski</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog/">Strona główna</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/blog/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://github.com/ctworzewski">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/">
+                            
+                                Strona główna
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/kontakt/">
+                            
+                                Kontakt
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://twitter.com/ctworzewski">
+                            
+                                <i class="fa fa-twitter fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://youtube.com/czarek92r">
+                            
+                                <i class="fa fa-youtube fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://facebook.com/ctworzewski">
+                            
+                                <i class="fa fa-facebook fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a target="_blank" rel="noopener" href="https://linkedin.com/in/ctworzewski">
+                            
+                                <i class="fa fa-linkedin fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/blog/images/front.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Instalacja serwera DNS Bind na CentOS 8</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2021-11-23
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="Przerwa-w-bloku-kolejna-reaktywacja"><a href="#Przerwa-w-bloku-kolejna-reaktywacja" class="headerlink" title="Przerwa w bloku - kolejna reaktywacja"></a>Przerwa w bloku - kolejna reaktywacja</h2><p>Ostatnimi czasy bardzo dużo czasu poświęcam na naukę administracji systemiami Linux. Na moim oku są systemy CentOS oraz Ubuntu. Ucze się i konfiguruje różne usługi sieciowe tj. serwery FTP, serwery pocztowe, serwer Apache, stawianie serwerów VPN czy instalacja serwera SQL Server pod Linuxem.<br>Sprawia mi to olbrzymią przyjemność. Część rzeczy np. mogę wykorzystać już w pracy zwłaszcza z serwerem pocztowym - wiem, gdzie co szukać i czego może być wina.</p>
+<h2 id="Co-to-jest-Bind"><a href="#Co-to-jest-Bind" class="headerlink" title="Co to jest Bind?"></a>Co to jest Bind?</h2><p>Bind jest serwerem DNS. Jest on jancześciej wybierany przez użytkowników. Jest wkorzystywany w systemach Linux’owych. Serwer Bind zapewnia  poprawne działanie stron www w Internecie. Zamienia adresy IP na przyjazne nazwy i odwrotnie.</p>
+<h2 id="Instalacja-Bind"><a href="#Instalacja-Bind" class="headerlink" title="Instalacja Bind"></a>Instalacja Bind</h2><h3 id="Podstawowe-instalacje-programow-i-uslug"><a href="#Podstawowe-instalacje-programow-i-uslug" class="headerlink" title="Podstawowe instalacje programów i usług"></a>Podstawowe instalacje programów i usług</h3><ul>
+<li>robimy wszelkie potrzebne aktualizacje systemu</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf update</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>instaluje edytor tekstu <strong>nano</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf install nano</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>przechodzę do instalacji <strong>bind’a</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf install <span class="built_in">bind</span> bind-utils</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>uruchamiam moją usługę Bind</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start named</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>sprawdzam status usługi - czy działa</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status named</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dodam teraz usługę Bind do autostartu, tak aby uruchamiała się podczas restartu serwera</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> named</span><br></pre></td></tr></table></figure>
+
+<h3 id="Konfiguracja-serwera-Bind"><a href="#Konfiguracja-serwera-Bind" class="headerlink" title="Konfiguracja serwera Bind"></a>Konfiguracja serwera Bind</h3><p>Teraz przechodzimy do podstawowej konfiguracji serwera.</p>
+<ul>
+<li>musimy edytować plik <strong>named.conf</strong>, który znajduje się w katalogu <strong>etc</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/named.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano named.conf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>zawartość pliku <strong>named.conf</strong></li>
+</ul>
+<p>musimy zakomentować wskazane linijski</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//      listen-on port 53 &#123; 127.0.0.1; &#125;;</span><br><span class="line">//      listen-on-v6 port 53 &#123; ::1; &#125;;</span><br><span class="line">        directory       <span class="string">&quot;/var/named&quot;</span>;</span><br><span class="line">        dump-file       <span class="string">&quot;/var/named/data/cache_dump.db&quot;</span>;</span><br><span class="line">        statistics-file <span class="string">&quot;/var/named/data/named_stats.txt&quot;</span>;</span><br><span class="line">        memstatistics-file <span class="string">&quot;/var/named/data/named_mem_stats.txt&quot;</span>;</span><br><span class="line">        secroots-file   <span class="string">&quot;/var/named/data/named.secroots&quot;</span>;</span><br><span class="line">        recursing-file  <span class="string">&quot;/var/named/data/named.recursing&quot;</span>;</span><br><span class="line">19 //      allow-query     &#123; localhost; &#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dopisanie na końcu kawałka kodu do pliku <strong>named.conf</strong>, w którym wskażemy lokalizacje naszego nowego pliku ze strefą DNS. Plik ten nazywa się <code>it-tworzewski.pl.db</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zone <span class="string">&quot;it-tworzewski.pl&quot;</span> &#123; <span class="built_in">type</span> master; file <span class="string">&quot;/var/named/it-tworzewski.pl.db&quot;</span>; &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Zapisujemy plik named.conf i wychodzimy</p>
+<ul>
+<li>zanim edytuje plik z moją strefą, musze ten plik utworzyć</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch /var/named/it-tworzewski.pl.db</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>edytujemy ten plik strefy</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /var/named/it-tworzewski.pl.db</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>do pliku <code>nano /var/named/it-tworzewski.pl.db</code> wklejamy:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$TTL</span> 3600</span><br><span class="line">@   IN      SOA     dns1.it-tworzewski.pl.      hostmaster.it-tworzewski.pl. (</span><br><span class="line">                                                2021070400</span><br><span class="line">                                                3600</span><br><span class="line">                                                3600</span><br><span class="line">                                                1209600</span><br><span class="line">                                                86400 )</span><br><span class="line">it-tworzewski.pl.         3600    IN      NS      dns1.it-tworzewski.pl.</span><br><span class="line">it-tworzewski.pl.         3600    IN      NS      dns2.it-tworzewski.pl.</span><br><span class="line"></span><br><span class="line">it-tworzewski.pl.         3600    IN      A       185.24.219.219</span><br><span class="line">dns1.it-tworzewski.pl.    3600    IN      A       185.24.219.219</span><br><span class="line">dns2.it-tworzewski.pl.    3600    IN      A       185.24.219.219</span><br><span class="line">www                 3600    IN      A       185.24.219.219</span><br></pre></td></tr></table></figure>
+
+<p>W wyżej podanym pliku mamy rekordy:</p>
+<ul>
+<li><strong>NS</strong></li>
+</ul>
+<p>Rekordy serwerów nazw (NS) określają, które serwery przekazują informacje na temat domeny z systemu DNS. Zwykle istnieje podstawowy i dodatkowy rekord serwera nazw dla domeny. Ja użyłem dwóch serwerów  <code>dns1</code> oraz <code>dns2</code> na tym samym adresie IP. Ze względów bezpieczeństwa warto mieć na innych adresach IP. W przypadku, gdy jeden serwer panie, mamy do dyspozycji drugi (zastępczy)</p>
+<ul>
+<li><strong>A</strong></li>
+</ul>
+<p>Rekord A (zwany też rekordem adresu lub rekordem hosta) łączy domenę z fizycznym adresem IP serwera</p>
+<p>Trzeba pamiętać, aby teraz nazwy serwerów:</p>
+<p>``bash<br>dns1.it-tworzewski.pl<br>dns2.it-tworzewski.pl</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">podać u rejestratora domeny. Bez podania tych adresów, strona nie będzie widoczna w sieci.</span><br><span class="line"></span><br><span class="line">### Jeśli dalej nie działa nasz serwer, to co dalej ?</span><br><span class="line"></span><br><span class="line">* zainstaluj firewalla</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">dnf install firewalld</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>uruchom firewall’a</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br><span class="line">systemctl status firewalld</span><br><span class="line">systemctl <span class="built_in">enable</span> firewalld</span><br></pre></td></tr></table></figure>
+
+<p>W tym momencie naprawdopodobniej stracę dostęp do SSH, ponieważ używam innego portu niż standardowy  <strong>port 22</strong></p>
+<h1 id="Wazne-ze-wzgledow-bezpieczenstwa-jest-uzywanie-innych-portow"><a href="#Wazne-ze-wzgledow-bezpieczenstwa-jest-uzywanie-innych-portow" class="headerlink" title="Ważne ze względów bezpieczeństwa jest używanie innych portów!"></a>Ważne ze względów bezpieczeństwa jest używanie innych portów!</h1><p>Łączę się do konsoli przez panel klienta firmy hostingowej</p>
+<ul>
+<li>dodaje porty do wyjątku, swój port ssh</li>
+</ul>
+<p>ze względów bezpieczeństwa nie napiszę jaki mam :) </p>
+<ul>
+<li>dodaje domyślny port DNS, czyli port nr 53</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --add-port=&#123;53/udp,53/tcp&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>przeładowuje usługę </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart firewalld</span><br></pre></td></tr></table></figure>
+
+<h2 id="Jak-widzimy-mamy"><a href="#Jak-widzimy-mamy" class="headerlink" title="Jak widzimy mamy"></a>Jak widzimy mamy</h2><p><img src="https://i.imgur.com/Iytgdbe.png" alt="Imgur"></p>
+<h1 id="Uwagi-mile-widziane"><a href="#Uwagi-mile-widziane" class="headerlink" title="Uwagi mile widziane!!!  :)"></a>Uwagi mile widziane!!!  :)</h1>
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+    <hr />
+    <h3>Komentarze:</h3>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2021 Cezary Tworzewski<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'cezarytworzewski';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+
+</html>
